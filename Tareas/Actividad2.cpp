@@ -1,3 +1,13 @@
+/******************** Presentacion ********************
+[Nombre]: Garnica Escamilla Luis Javier.
+[Fecha]: 23 de Enero de 2023.
+[Programa]: Actividad1.cpp 
+Centro Universitario de los Altos.
+Ingenieria en Comptuacion 2do Semestre.
+[Profesor]: Franco Casillas Sergio.
+[Descripcion]: Este programa imprime a manera de lista mis datos personales.
+******************************************************/
+
 #include <iostream>
 
 using namespace std;
