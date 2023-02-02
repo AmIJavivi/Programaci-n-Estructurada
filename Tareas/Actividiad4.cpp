@@ -50,6 +50,7 @@ int main(){
         menu();
     }
     salida();
+    return 0;
 }
 
 /**
@@ -70,6 +71,7 @@ void salida(){
                 main();
                 break;
             case 1:
+                 fflush(stdin);
                 break;
             default:
                 fflush(stdin);
