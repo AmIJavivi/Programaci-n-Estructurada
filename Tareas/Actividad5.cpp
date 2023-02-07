@@ -1,8 +1,5 @@
 #include <iostream>
 #include <windows.h>
-#include <cstdlib>
-
-#define sleep
 
 using namespace std;
 
@@ -19,6 +16,12 @@ void borrar();
 void ira();
 void menu(int seleccion);
 
+
+/**
+ * It prints the array, asks the user what they want to do, and then calls the menu function.
+ * 
+ * @return the value of the variable "seleccion"
+ */
 int main(){
     int seleccion = 0;
     
@@ -46,6 +49,12 @@ int main(){
     return 0;
 }
 
+/**
+ * It's a menu that calls other functions.
+ * </code>
+ * 
+ * @param seleccion The option the user chose.
+ */
 void menu(int seleccion){
     switch(seleccion){
         case 0:
@@ -78,6 +87,10 @@ void menu(int seleccion){
     }
 }
 
+/**
+ * It asks the user to input a number, if the number is not between 0 and 9, it asks the user to input
+ * a valid number
+ */
 void ira(){
     printf("\n[Ir a la posicion]: ");
     
@@ -93,6 +106,9 @@ void ira(){
     
 }
 
+/**
+ * It's a function that clears the array and resets the position and sum to 0
+ */
 void vaciar(){
     int contador = 0;
 
@@ -106,6 +122,9 @@ void vaciar(){
     main();
 }
 
+/**
+ * It prints the array and the sum of the array
+ */
 void imprimir(){
     system("cls");
 
@@ -131,6 +150,10 @@ void imprimir(){
     SetConsoleTextAttribute(hConsole, 15);
 }
 
+/**
+ * It takes an array of integers, and a position in the array, and it asks the user to input a new
+ * value for the element at that position
+ */
 void editar(){
     int temporal = arreglo[posicion];
 
