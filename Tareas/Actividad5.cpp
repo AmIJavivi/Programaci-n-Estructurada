@@ -1,3 +1,13 @@
+/******************** Presentacion ********************
+[Nombre]: Garnica Escamilla Luis Javier.
+[Fecha]: 30 de Enero de 2023.
+[Programa]: Actividad4.cpp 
+Centro Universitario de los Altos.
+Ingenieria en Comptuacion 2do Semestre.
+[Profesor]: Franco Casillas Sergio.
+[Descripcion]:  Este programa calcula la serir de fibonacci hasta el "N" termino, utilizando
+ el ciclo basico que el usuario prefiera.
+******************************************************/
 #include <iostream>
 #include <windows.h>
 
@@ -6,9 +16,12 @@ using namespace std;
 int arreglo[10];
 int posicion, sumatoriatotal = 0;
 
+/**
+ * Este comando sirve especificamente para cambiar el color de la consola
+ */
 HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
-void vaciar();
+void vaciar();          //TODO Debo documentar mas en las declaraciones y funciones
 void editar();
 void pasar();
 void imprimir();
@@ -18,10 +31,10 @@ void menu(int seleccion);
 
 
 /**
- * It prints the array, asks the user what they want to do, and then calls the menu function.
- * 
- * @return the value of the variable "seleccion"
+ * La funcion principal se encarga de llamar a la funcion imprimir, pregunta que hacer y
+ * llama a la funcion menu.
  */
+
 int main(){
     int seleccion = 0;
     
@@ -32,7 +45,7 @@ int main(){
     imprimir();
     
     printf("Estas en la posicion %d del arreglo, que deseas hacer?\n\n[Borrar = 1]\t[Editar = 2]\t[Pasar = 3]\t[Ir a la posicion n = 4]\t",posicion);
-    SetConsoleTextAttribute(hConsole, 4);
+    SetConsoleTextAttribute(hConsole, 9);
     printf("[Vaciar el arreglo = 5]\n\n\t\t\t\t\t\t\t\t\t\t[Salir = 0]");
     SetConsoleTextAttribute(hConsole, 15);
     printf("\r[Seleccion]: ");
@@ -45,15 +58,12 @@ int main(){
     }else{
         menu(seleccion);
     }
-
-    return 0;
 }
 
+
 /**
- * It's a menu that calls other functions.
- * </code>
- * 
- * @param seleccion The option the user chose.
+ * Es un menú que llama a otras funciones.
+ * Puede utilizar el parametro "seleccion", opción que eligió el usuario.
  */
 void menu(int seleccion){
     switch(seleccion){
@@ -87,9 +97,11 @@ void menu(int seleccion){
     }
 }
 
+
+
 /**
- * It asks the user to input a number, if the number is not between 0 and 9, it asks the user to input
- * a valid number
+ * Le pide al usuario una posición en la matriz, y si la entrada no es un número o no está en la
+ * matriz, le pide al usuario que ingrese un número válido
  */
 void ira(){
     printf("\n[Ir a la posicion]: ");
@@ -106,8 +118,9 @@ void ira(){
     
 }
 
+
 /**
- * It's a function that clears the array and resets the position and sum to 0
+ * Es una función que borra el arreglo y restablece la posición y la suma a 0
  */
 void vaciar(){
     int contador = 0;
@@ -122,8 +135,9 @@ void vaciar(){
     main();
 }
 
+
 /**
- * It prints the array and the sum of the array
+ * Imprime el arreglo y la suma del mismo.
  */
 void imprimir(){
     system("cls");
@@ -134,7 +148,7 @@ void imprimir(){
     {
         if(contador == posicion){
             
-            SetConsoleTextAttribute(hConsole, 4);
+            SetConsoleTextAttribute(hConsole, 9);
             printf("->");
             SetConsoleTextAttribute(hConsole, 10);
 
@@ -150,9 +164,11 @@ void imprimir(){
     SetConsoleTextAttribute(hConsole, 15);
 }
 
+
 /**
- * It takes an array of integers, and a position in the array, and it asks the user to input a new
- * value for the element at that position
+ * Toma una posición en el arreglo, y le pide al usuario que ingrese un nuevo
+ * valor para el elemento en esa posición, si no es un numero pide que ingrese 
+ * un valor valido
  */
 void editar(){
     int temporal = arreglo[posicion];
@@ -173,11 +189,17 @@ void editar(){
     main();
 }
 
+/**
+ * Suma uno a la posicion y regresa a la funcion principal.
+ */
 void pasar(){
     posicion += 1;
     main();
 }
 
+/**
+ * Elimina el elemento de la lista correspondiente a la posicion.
+ */
 void borrar(){
     sumatoriatotal -= arreglo[posicion];
     arreglo[posicion] = 0;
