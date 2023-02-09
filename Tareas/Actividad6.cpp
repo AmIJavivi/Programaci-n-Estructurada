@@ -43,9 +43,11 @@ int main(){
 
     /* Solicitar al usuario que ingrese el tamaño de la matriz + Validacion */
     printf("[Tama%co de las matrices cuadradas]: ", 164); 
-    if(float(scanf("%d",&tamano))!= 1){
-        system("cls");
+    if((float(scanf("%d",&tamano))!= 1) or (tamano > 10 or tamano < 2 )){
+        printf("\nCaptura un valor valido [Entre 2 y 10]");
         fflush(stdin);
+        system("pause");
+        system("cls");
         main();
     }
     system("cls");
@@ -196,7 +198,11 @@ void menu(){
             editar();
             break;
         default:
+            printf("Imprime un valor valido, porfavor\n\n");
+            system("pause");
             fflush(stdin);
+            system("cls");
+            imprimir();
             menu();
             break;
     }
