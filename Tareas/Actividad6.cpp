@@ -34,14 +34,15 @@ void resultado();
 void menu();
 /* Una función que permite al usuario editar los valores de las matrices. */
 void editar();
+/* Limpiando las matrices. */
+void vaciar();
+
 
 int main(){
     /* Aleatorizacion de la semilla para el generador de números aleatorios. */
     srand((unsigned)time(NULL));
     system("cls");
 
-
-    /* Solicitar al usuario que ingrese el tamaño de la matriz + Validacion */
     printf("[Tama%co de las matrices cuadradas]: ", 164); 
     if((float(scanf("%d",&tamano))!= 1) or (tamano > 10 or tamano < 2 )){
         printf("\nCaptura un valor valido [Entre 2 y 10]");
@@ -55,9 +56,7 @@ int main(){
     llenar();
     imprimir();
     menu();
-    system("cls");
-    imprimir();
-    resultado();
+   
     
     system("pause");
     return 0;
@@ -164,6 +163,32 @@ void multiplicar(){
     }
 }
 
+void vaciar(){
+    int cont = 0;
+    int x = 0;
+    int y = 0;
+
+    /* Llenar las matrices con números aleatorios. */
+    while (cont != 2){
+        while(y != tamano){
+            while(x != tamano){
+               if(cont == 0){
+                    matriza[x][y] = 0;
+                }else if(cont == 1){
+                    matrizb[x][y] = 0;
+                }
+                x++;
+            }
+            x = 0;
+            y ++;
+        }
+        x = 0;
+        y = 0;
+        cont ++;
+    }
+
+}
+
 /**
  * Imprime el menú para que el usuario elija.
  */
@@ -171,7 +196,7 @@ void menu(){
     int seleccion;
 
     /* Impresión de un menú para que el usuario seleccione una opción. */
-    printf("\nQue deseas hacer?\t\t\t[Suma = 1]\t[Resta = 2]\t[Multiplicacion = 3]\t[Editar = 4]\n[Seleccion]: ");
+    printf("\nQue deseas hacer?\t\t\t[Suma = 1]\t[Resta = 2]\t[Multiplicacion = 3]\t[Editar = 4]\n\t\t\t\t\t[Vaciar = 5]\t[LLenar al azar = 6]\t[Salir = 0]\r[Seleccion]: ");
     if(float(scanf("%d",&seleccion)) != 1){
         printf("Imprime un valor valido, porfavor\n\n");
         system("pause");
@@ -197,6 +222,22 @@ void menu(){
             fflush(stdin);
             editar();
             break;
+        case 5:
+            fflush(stdin);
+            vaciar();
+            system("cls");
+            imprimir();
+            menu();
+            break;
+        case 6:
+            llenar();
+            system("cls");
+            imprimir();
+            menu();
+            break;
+        case 0:
+
+            break;
         default:
             printf("Imprime un valor valido, porfavor\n\n");
             system("pause");
@@ -205,6 +246,11 @@ void menu(){
             imprimir();
             menu();
             break;
+    }
+    system("cls");
+    imprimir();
+    if(seleccion != 0){
+        resultado();
     }
 }
 
@@ -270,9 +316,9 @@ void llenar(){
         while(y != tamano){
             while(x != tamano){
                if(cont == 0){
-                    matriza[x][y] = -100 + rand() % 200;
+                    matriza[x][y] = -100 + rand() % 201;
                 }else if(cont == 1){
-                    matrizb[x][y] = -100 + rand() % 200;
+                    matrizb[x][y] = -100 + rand() % 201;
                 }
                 x++;
             }
