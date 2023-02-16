@@ -1,6 +1,3 @@
-/**
- * *|CURSOR_MARCADOR|*
- */
 /******************** Presentacion ********************
 [Nombre]: Garnica Escamilla Luis Javier.
 [Fecha]: 30 de Enero de 2023.
