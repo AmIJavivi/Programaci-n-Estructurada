@@ -1,6 +1,3 @@
-/**
- * *|CURSOR_MARCADOR|*
- */
 /******************** Presentacion ********************
 [Nombre]: Garnica Escamilla Luis Javier.
 [Fecha]: 30 de Enero de 2023.
@@ -20,7 +17,6 @@ using namespace std;
 char arreglo1[10][40];
 char arreglo2[10][40];
 char arreglo3[20][40];
-char temporal[1][40];
 int posicion1 = 0;
 int posicion2 = 0;
 
@@ -86,7 +82,6 @@ int main(){
         fflush(stdin);
         system("pause");
         main();
-
     }
     /* Al verificar si la entrada del usuario es 0 o 6, si lo es, llamará a la función de menú, si no,
     le pedirá al usuario que ingrese un valor para la variable arreglodes. */
@@ -170,7 +165,7 @@ void diferencia(){
                 break;
             }
         }
-        if(!existe) {
+        if(!existe){
             strcpy(arreglo3[cont++], arreglo1[i]);
         }
     }
@@ -396,10 +391,7 @@ void imprimir(){
  */
 void editar(int arreglodes){
     printf("\n[Valor]: ");
-
-
     
-
     if(arreglodes == 1){
         fgets(arreglo1[posicion1], 20, stdin);
         arreglo1[posicion1][strcspn(arreglo1[posicion1], "\n")] = 0;
@@ -427,8 +419,11 @@ void pasar(int arreglodes){
     main();
 }
 
+
 /**
- * Elimina el elemento de la lista correspondiente a la posicion.
+ * Elimina la matriz.
+ * 
+ * @param arreglodes La matriz que se va a eliminar.
  */
 void borrar(int arreglodes){
     if(arreglodes == 1){

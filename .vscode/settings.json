@@ -42,5 +42,6 @@
     "vector": "cpp",
     "iostream": "cpp"
   },
-  "docwriter.language": "Spanish"
+  "docwriter.language": "Spanish",
+  "C_Cpp_Runner.useAddressSanitizer": false
 }
