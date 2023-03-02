@@ -1,5 +1,6 @@
 #include <iostream>
 #include <windows.h>
+#include "Javi.h"
 
 using namespace std;
 
@@ -9,8 +10,9 @@ int main(){
     HANDLE hConsole = GetStdHandle( STD_OUTPUT_HANDLE );
     
 
-    while(cont != 20){
-        SetConsoleTextAttribute(hConsole, cont);
+    while(cont != 30){
+        color(cont);
+        gotoxy(1,cont);
         printf("%d",cont);
         cont += 1;
     }
