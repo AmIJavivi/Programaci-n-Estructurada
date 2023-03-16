@@ -1,5 +1,5 @@
 #include <Windows.h>
-
+		
 gotoxy(int x,int y){
 	HANDLE hcon;
 	hcon = GetStdHandle(STD_OUTPUT_HANDLE);
