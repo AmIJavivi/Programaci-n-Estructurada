@@ -40,7 +40,12 @@
     "string": "cpp",
     "unordered_map": "cpp",
     "vector": "cpp",
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "string_view": "cpp",
+    "iosfwd": "cpp",
+    "istream": "cpp",
+    "fstream": "cpp",
+    "limits": "cpp"
   },
   "docwriter.language": "Spanish",
   "C_Cpp_Runner.useAddressSanitizer": false
