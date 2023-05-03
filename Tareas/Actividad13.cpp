@@ -52,6 +52,7 @@ int main(){
         if((fallos == 6) or (string(aciertos) == string(frase_a_utilizar))){
             scanf("%d", &salir);
             if(salir == 0){
+                system("start https://www.youtube.com/watch?v=dQw4w9WgXcQ");
                 abort();
             }else{
                 color(15);
