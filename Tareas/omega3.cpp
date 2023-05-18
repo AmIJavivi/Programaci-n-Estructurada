@@ -1,92 +1,75 @@
 #include <iostream>
-#include <vector>
 #include <queue>
-
+#include <vector>
+#include <climits>
 using namespace std;
 
-void updateLavaLevel(int& lavaLevel, bool& lavaRising) {
-    if (lavaRising) {
-        lavaLevel++;
-        if (lavaLevel == 5) {
-            lavaRising = false;
-        }
-    } else {
-        lavaLevel--;
-        if (lavaLevel == 0) {
-            lavaRising = true;
-        }
-    }
+typedef pair<int, int> pii;
+
+const int MAXN = 50;
+const int MAXH = 6;
+const int DX[4] = {0, 0, -1, 1};
+const int DY[4] = {-1, 1, 0, 0};
+
+int n;
+int map[MAXN][MAXN];
+int dist[MAXN][MAXN][MAXH];
+
+bool is_valid(int x, int y, int h, int t) {
+    if (h + t > MAXH) return false;
+    if (x < 0 || x >= n || y < 0 || y >= n) return false;
+    if (map[x][y] > h + t) return false;
+    return true;
 }
 
-struct Node {
-    int x, y, dist;
-    Node(int x_, int y_, int dist_) : x(x_), y(y_), dist(dist_) {}
-};
-
-int escapeVolcano(vector<vector<int>>& volcanoMap) {
-    const int n = volcanoMap.size();
-    vector<vector<bool>> visited(n, vector<bool>(n, false));
-
-    queue<Node> q;
-    q.push(Node(0, 0, 0));
-
-    int lavaLevel = 0;
-    bool lavaRising = true;
+int bfs() {
+    queue<tuple<int, int, int>> q;
+    q.push(make_tuple(0, 0, 0));
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            for (int k = 0; k < MAXH; k++) {
+                dist[i][j][k] = INT_MAX;
+            }
+        }
+    }
+    dist[0][0][0] = 0;
 
     while (!q.empty()) {
-        Node curr = q.front();
+        int x = get<0>(q.front()), y = get<1>(q.front()), h = get<2>(q.front());
         q.pop();
+        if (x == n - 1 && y == n - 1) return dist[x][y][h];
 
-        if (curr.x == n - 1 && curr.y == n - 1) {
-            return curr.dist;
+        // Update time
+        int t = (dist[x][y][h] + 1) % (MAXH * 2);
+        if (t >= MAXH) {
+            h--;
+        } else {
+            h++;
         }
 
-        if (volcanoMap[curr.x][curr.y] < lavaLevel) {
-            continue;
+        // Try moving to neighbors
+        for (int i = 0; i < 4; i++) {
+            int nx = x + DX[i], ny = y + DY[i];
+            if (is_valid(nx, ny, h, t) && dist[x][y][h] + 1 < dist[nx][ny][h]) {
+                dist[nx][ny][h] = dist[x][y][h] + 1;
+                q.push(make_tuple(nx, ny, h));
+            }
         }
-
-        visited[curr.x][curr.y] = true;
-
-        if (curr.x > 0 && !visited[curr.x - 1][curr.y] && volcanoMap[curr.x - 1][curr.y] >= lavaLevel) {
-            q.push(Node(curr.x - 1, curr.y, curr.dist + 1));
-        }
-
-        if (curr.x < n - 1 && !visited[curr.x + 1][curr.y] && volcanoMap[curr.x + 1][curr.y] >= lavaLevel) {
-            q.push(Node(curr.x + 1, curr.y, curr.dist + 1));
-        }
-
-        if (curr.y > 0 && !visited[curr.x][curr.y - 1] && volcanoMap[curr.x][curr.y - 1] >= lavaLevel) {
-            q.push(Node(curr.x, curr.y - 1, curr.dist + 1));
-        }
-
-        if (curr.y < n - 1 && !visited[curr.x][curr.y + 1] && volcanoMap[curr.x][curr.y + 1] >= lavaLevel) {
-            q.push(Node(curr.x, curr.y + 1, curr.dist + 1));
-        }
-
-        updateLavaLevel(lavaLevel, lavaRising);
     }
 
     return -1;
 }
 
 int main() {
-    int n;
     cin >> n;
-
-    vector<vector<int>> volcanoMap(n, vector<int>(n));
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            cin >> volcanoMap[i][j];
+            cin >> map[i][j];
         }
     }
+    int ans = bfs();
+    cout << ans << endl;
 
-    int shortestTime = escapeVolcano(volcanoMap);
-
-    if (shortestTime == -1) {
-        cout<<"-1"<<endl;
-        }else{
-            cout<<shortestTime<<endl;
-        }
     system("pause");
     return 0;
 }
