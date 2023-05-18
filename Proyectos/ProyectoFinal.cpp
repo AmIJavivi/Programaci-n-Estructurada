@@ -91,6 +91,7 @@ int main() {
                         case '0':
                             break;
                         default:
+                            cout << "Opcion invalida.\n";
                             fflush(stdin);
                             break;
                     }
@@ -127,6 +128,7 @@ int main() {
                         case '0':
                             break;
                         default:
+                            cout << "Opcion invalida.\n";
                             fflush(stdin);
                             break;
                     }
@@ -163,6 +165,7 @@ int main() {
                         case '0':
                             break;
                         default:
+                            cout << "Opcion invalida.\n";
                             fflush(stdin);
                             break;
                     }
@@ -206,6 +209,7 @@ int main() {
                         case '0':
                             break;
                         default:
+                            cout << "Opcion invalida.\n";
                             fflush(stdin);
                             break;
                     }
@@ -215,7 +219,7 @@ int main() {
                 cout << "Saliendo del programa.\n";
                 break;
             default:
-                cout << "Opción inválida.\n";
+                cout << "Opcion invalida.\n";
                 fflush(stdin);
                 break;
         }
